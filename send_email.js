@@ -17,7 +17,7 @@ const transporter = nodemailer.createTransport({
 const mailOptions = {
     from: 'zly.idleness@gmail.com',
     to: 'zly_hit@outlook.com',
-    subject: 'Daily TODOs and Updates',
+    subject: 'Daily',
     html: htmlContent,
 };
 
