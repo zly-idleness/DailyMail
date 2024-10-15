@@ -3,17 +3,20 @@ const fs = require('fs');
 
 const htmlContent = fs.readFileSync('daily_email.html', 'utf-8');
 
+// 获取邮箱密码
+const emailPassword = process.env.EMAIL_PASSWORD;
+
 const transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-        user: 'your_email@gmail.com',
-        pass: 'your_email_password',
+        user: 'zly.idleness@gmail.com',
+        pass: emailPassword,
     },
 });
 
 const mailOptions = {
-    from: 'your_email@gmail.com',
-    to: 'your_email@gmail.com',
+    from: 'zly.idleness@gmail.com',
+    to: 'zly.idleness@gmail.com',
     subject: 'Daily TODOs and Updates',
     html: htmlContent,
 };
