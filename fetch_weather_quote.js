@@ -3,7 +3,7 @@ const fs = require('fs');
 
 // 获取 API 密钥和城市
 const apiKey = process.env.WEATHER_API_KEY;
-const city = process.env.CITY;
+const city = "shenzhen";
 
 async function fetchWeatherAndQuote() {
     try {
