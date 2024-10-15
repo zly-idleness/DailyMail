@@ -41,17 +41,17 @@ try {
 // 基本样式
 const css = `
   body {
-    font-family: Arial, sans-serif;
+    font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'Heiti SC', 'WenQuanYi Micro Hei', sans-serif;
     margin: 0;
     padding: 20px;
-    background-color: #f4f4f9;
-    color: #333;
+    background-color: #fef5e7; /* 柔和的奶油黄色背景 */
+    color: #444;
     line-height: 1.6;
   }
 
   h1, h2, h3 {
-    color: #333;
-    border-bottom: 2px solid #ddd;
+    color: #444;
+    border-bottom: 2px solid #ffe4e1; /* 淡粉色下划线 */
     padding-bottom: 10px;
     margin-top: 20px;
   }
@@ -62,17 +62,17 @@ const css = `
   }
 
   ul {
-    list-style-type: square;
+    list-style-type: circle;
     padding-left: 20px;
   }
 
   .container {
     max-width: 800px;
     margin: 0 auto;
-    background: #fff;
+    background: #ffffff; /* 白色背景 */
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
 
   .section {
@@ -80,23 +80,49 @@ const css = `
   }
 
   .todo-item {
-    padding: 10px;
-    margin-bottom: 8px;
-    border-radius: 5px;
-    background-color: #e8f0fe;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background-color: #e0f7fa; /* 柔和的薄荷蓝背景 */
+    border: 1px solid #b2ebf2; /* 更深的边框颜色 */
   }
 
   .highlight {
-    color: #d9534f;
+    background-color: #ffd1dc; /* 柔和的粉色背景 */
+    color: #ffffff; /* 白色文字 */
     font-weight: bold;
+    padding: 15px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+
+  .weather {
+    background-color: #e1bee7; /* 淡紫色背景 */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   .quote {
     font-style: italic;
     color: #555;
-    border-left: 4px solid #ddd;
-    padding-left: 10px;
+    background-color: #d1c4e9; /* 薰衣草紫背景 */
+    padding: 15px;
+    border-radius: 10px;
     margin: 20px 0;
+    border-left: 4px solid #b39ddb; /* 深紫色边框 */
+  }
+
+  .quote p {
+    margin: 0;
+  }
+
+  .quote em {
+    display: block;
+    margin-top: 10px;
+    text-align: right;
   }
 `;
 
@@ -113,10 +139,7 @@ const htmlTemplate = `
 
 <body>
     <div class="container">
-        <h1>Reminders</h1>
-        <div class="section highlight">
-            <p>看看计划和TODO完成了吗！不要玩机早睡早起哦！</p>
-        </div>
+        <h1 class="highlight">看看计划和TODO完成了吗！不要玩机早睡早起哦！</h1>
         <h1>Daily Todos</h1>
         <div class="section">${htmlContent}</div>
 
@@ -133,6 +156,7 @@ const htmlTemplate = `
 </body>
 </html>
 `;
+
 
 // 将生成的 HTML 内容写入文件
 fs.writeFileSync('daily_email.html', htmlTemplate, 'utf-8');
