@@ -3,7 +3,8 @@ name: Send Daily Email
 on:
   schedule:
     - cron: "0 2,6,12 * * *" # Runs at 10:00, 14:00, and 20:00 (UTC)
-  workflow_dispatch: # Add this line to enable manual triggers
+  workflow_dispatch: # 允许手动触发工作流
+
 jobs:
   send-email:
     runs-on: ubuntu-latest
