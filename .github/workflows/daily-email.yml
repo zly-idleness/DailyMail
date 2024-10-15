@@ -1,0 +1,40 @@
+name: Send Daily Email
+
+on:
+  schedule:
+    - cron: "0 2,6,12 * * *" # Runs at 10:00, 14:00, and 20:00 (UTC)
+
+jobs:
+  send-email:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Decrypt todo.md
+        env:
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        run: |
+          gpg --quiet --batch --yes --decrypt --passphrase="$GPG_PASSPHRASE" \
+          --output todo.md todo.md.gpg
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+
+      - name: Install dependencies
+        run: npm install axios markdown-it nodemailer
+
+      - name: Get Weather and Quote
+        run: |
+          node fetch_weather_quote.js
+
+      - name: Render HTML from Markdown
+        run: |
+          node render_md_to_html.js
+
+      - name: Send Email
+        run: |
+          node send_email.js
