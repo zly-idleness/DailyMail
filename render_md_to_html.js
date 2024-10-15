@@ -139,7 +139,7 @@ const htmlTemplate = `
 
 <body>
     <div class="container">
-        <h1 class="highlight">看看计划和TODO完成了吗！不要玩机早睡早起哦！</h1>
+        <h1 class="highlight">看看计划和TODO完成了吗！不要忘记早睡早起哦！</h1>
         <h1>Daily Todos</h1>
         <div class="section">${htmlContent}</div>
 
