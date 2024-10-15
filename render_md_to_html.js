@@ -9,12 +9,11 @@ const markdownContent = fs.readFileSync('todo.md', 'utf-8');
 const htmlContent = md.render(markdownContent);
 
 // 读取天气和每日一句内容
-let weatherData;
-weatherHtml = '';
-quoteHtml = '';
+let weatherHtml = '';
+let quoteHtml = '';
 try {
     const weatherAndQuote = JSON.parse(fs.readFileSync('weather_and_quote.json', 'utf-8'));
-    weatherData = weatherAndQuote.weather;
+    const weatherData = weatherAndQuote.weather;
     const quote = weatherAndQuote.quote;
     const author = weatherAndQuote.author;
 
@@ -22,14 +21,14 @@ try {
     const location = `${weatherData.location.name}, ${weatherData.location.region}`;
     const temperature = `${weatherData.current.temp_c}°C`;
     const condition = weatherData.current.condition.text;
-    const weatherHtml = `
+    weatherHtml = `
         <p><strong>Location:</strong> ${location}</p>
         <p><strong>Temperature:</strong> ${temperature}</p>
         <p><strong>Condition:</strong> ${condition}</p>
     `;
 
     // 引言 HTML
-    const quoteHtml = `
+    quoteHtml = `
         <p>"${quote}"</p>
         <p><em>- ${author}</em></p>
     `;
@@ -130,8 +129,6 @@ const htmlTemplate = `
         <div class="section quote">
             ${quoteHtml}
         </div>
-
-
     </div>
 </body>
 </html>
@@ -139,4 +136,4 @@ const htmlTemplate = `
 
 // 将生成的 HTML 内容写入文件
 fs.writeFileSync('daily_email.html', htmlTemplate, 'utf-8');
-console.log('HTML file has been generated: output.html');
+console.log('HTML file has been generated: daily_email.html');
