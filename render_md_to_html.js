@@ -141,8 +141,6 @@ const htmlTemplate = `
     <div class="container">
         <h1 class="highlight">看看计划和TODO完成了吗！不要忘记早睡早起哦！</h1>
 
-        <div class="section">${htmlContent}</div>
-
         <h2>Weather</h2>
         <div class="section weather">
             ${weatherHtml}
@@ -152,6 +150,10 @@ const htmlTemplate = `
         <div class="section quote">
             ${quoteHtml}
         </div>
+
+        <div class="section">${htmlContent}</div>
+
+
     </div>
 </body>
 </html>
