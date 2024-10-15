@@ -37,5 +37,7 @@ jobs:
           node render_md_to_html.js
 
       - name: Send Email
+        env:
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
         run: |
           node send_email.js
