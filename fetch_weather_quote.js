@@ -12,7 +12,7 @@ async function fetchWeatherAndQuote() {
         const weather = weatherResponse.data;
 
         // 调用每日一句API
-        const quoteResponse = await axios.get('https://api.quotable.io/random');
+        const quoteResponse = await axios.get('https://quotes-api-self.vercel.app/quote');
         const quote = quoteResponse.data.content;
 
         // 将天气和每日一句写入文件
