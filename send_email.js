@@ -9,14 +9,14 @@ const emailPassword = process.env.EMAIL_PASSWORD;
 const transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-        user: 'zly.idleness@gmail.com',
+        user: 'zly.idleness@gmail.com', // your email
         pass: emailPassword,
     },
 });
 
 const mailOptions = {
-    from: 'zly.idleness@gmail.com',
-    to: 'zly_hit@outlook.com',
+    from: 'zly.idleness@gmail.com', // your email
+    to: 'zly_hit@outlook.com', // your email
     subject: 'Daily',
     html: htmlContent,
 };
