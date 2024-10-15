@@ -29,6 +29,9 @@ jobs:
         run: npm install axios markdown-it nodemailer
 
       - name: Get Weather and Quote
+        env:
+          WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+          CITY: "shenzhen"
         run: |
           node fetch_weather_quote.js
 
