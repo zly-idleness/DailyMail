@@ -8,6 +8,35 @@ const md = new markdownIt();
 const markdownContent = fs.readFileSync('todo.md', 'utf-8');
 const htmlContent = md.render(markdownContent);
 
+// 读取天气和每日一句内容
+let weatherData;
+try {
+    const weatherAndQuote = JSON.parse(fs.readFileSync('weather_and_quote.json', 'utf-8'));
+    weatherData = weatherAndQuote.weather;
+    const quote = weatherAndQuote.quote;
+    const author = weatherAndQuote.author;
+
+    // 提取天气信息
+    const location = `${weatherData.location.name}, ${weatherData.location.region}`;
+    const temperature = `${weatherData.current.temp_c}°C`;
+    const condition = weatherData.current.condition.text;
+    const weatherHtml = `
+        <p><strong>Location:</strong> ${location}</p>
+        <p><strong>Temperature:</strong> ${temperature}</p>
+        <p><strong>Condition:</strong> ${condition}</p>
+    `;
+
+    // 引言 HTML
+    const quoteHtml = `
+        <p>"${quote}"</p>
+        <p><em>- ${author}</em></p>
+    `;
+} catch (error) {
+    console.error('Error reading weather and quote data:', error);
+    weatherHtml = '<p>Weather data is unavailable.</p>';
+    quoteHtml = '<p>Quote data is unavailable.</p>';
+}
+
 // 基本样式
 const css = `
   body {
@@ -80,25 +109,27 @@ const htmlTemplate = `
     <title>Daily Todo</title>
     <style>${css}</style>
 </head>
+
 <body>
     <div class="container">
+        <h1>Reminders</h1>
+        <div class="section highlight">
+            <p>看看计划和TODO完成了吗！不要玩机早睡早起哦！</p>
+        </div>
         <h1>Daily Todos</h1>
         <div class="section">${htmlContent}</div>
 
-        <h2>Weather & Quote</h2>
-        <div class="section">
-            <div class="weather">
-                <!-- Weather content will be inserted here if needed -->
-            </div>
-            <div class="quote">
-                <!-- Daily quote content will be inserted here if needed -->
-            </div>
+        <h2>Weather</h2>
+        <div class="section weather">
+            ${weatherHtml}
         </div>
 
-        <h2>Reminders</h2>
-        <div class="section highlight">
-            <p>Don't forget to sleep early and complete your plans!</p>
+        <h2>Daily Quote</h2>
+        <div class="section quote">
+            ${quoteHtml}
         </div>
+
+
     </div>
 </body>
 </html>
