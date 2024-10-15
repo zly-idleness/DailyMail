@@ -10,6 +10,8 @@ const htmlContent = md.render(markdownContent);
 
 // 读取天气和每日一句内容
 let weatherData;
+weatherHtml = '';
+quoteHtml = '';
 try {
     const weatherAndQuote = JSON.parse(fs.readFileSync('weather_and_quote.json', 'utf-8'));
     weatherData = weatherAndQuote.weather;
