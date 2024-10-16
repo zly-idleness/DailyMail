@@ -2,7 +2,7 @@ name: Send Daily Email
 
 on:
   schedule:
-    - cron: "0 2,6,12 * * *" # Runs at 10:00, 14:00, and 20:00 (UTC)
+    - cron: "0 0,4,11 * * *" # Runs at 10:00, 14:00, and 20:00 (UTC)
   workflow_dispatch: # 允许手动触发工作流
 
 jobs:
